@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Kiểm Tra Tiếng Anh Tương Tác - Ms Lê Hằng English</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-grad-1: #8854C0;
+            --bg-grad-2: #FDCB6E;
+            --bg-grad-3: #00C9A7;
+            --bg-grad-4: #E84393;
+            --correct-color: #00D26A;
+            --correct-shadow: #00A352;
+            --wrong-color: #FF4757;
+            --wrong-shadow: #D63031;
+            --btn-default: #F0F3F8;
+            --btn-shadow: #CBD0D9;
+            --text-dark: #2D3436;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', 'Quicksand', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, var(--bg-grad-1), var(--bg-grad-2), var(--bg-grad-3), var(--bg-grad-4));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+            padding: 20px 10px 60px 10px;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* SVG Background Patterns */
+        .bg-patterns {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.25;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath fill='%23FFFFFF' d='M30 15 l3 7 h7 l-5 5 l2 7 l-7-4 l-7 4 l2-7 l-5-5 h7 z M80 70 l4 9 h9 l-7 6 l3 9 l-9-5 l-9 5 l3-9 l-7-6 h9 z M15 85 a 8 8 0 1 0 16 0 a 8 8 0 1 0 -16 0 M90 20 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0'%3E%3C/path%3E%3C/svg%3E");
+            animation: floatingPattern 25s linear infinite;
+        }
+
+        @keyframes floatingPattern {
+            from { background-position: 0 0; }
+            to { background-position: 500px 1000px; }
+        }
+
+        .main-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .teacher-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #8854C0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            margin-bottom: 12px;
+        }
+
+        /* Banner Notification */
+        .notice-banner {
+            background: #FFF3BF;
+            border: 3px solid #FCC419;
+            border-radius: 20px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            margin-bottom: 25px;
+            animation: pulseBanner 2s infinite alternate;
+        }
+
+        @keyframes pulseBanner {
+            0% { transform: scale(0.99); }
+            100% { transform: scale(1.01); }
+        }
+
+        .notice-title {
+            color: #E67700;
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .notice-body {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #495057;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .notice-highlight {
+            display: block;
+            margin-top: 6px;
+            color: #D9480F;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        /* Question Cards */
+        .question-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            border: 4px solid #FFFFFF;
+            transition: transform 0.2s ease;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #E84393;
+            color: white;
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: #8854C0;
+            color: white;
+            font-weight: 900;
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            margin-left: 6px;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #2D3436;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        /* Reading Passages Frame */
+        .passage-box {
+            background: #EBF8FF;
+            border: 2px solid #3182CE;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: #2B6CB0;
+            font-weight: 700;
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option-btn {
+            background: var(--btn-default);
+            border: 2px solid #DCDFE6;
+            border-radius: 18px;
+            padding: 14px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2D3436;
+            cursor: pointer;
+            box-shadow: 0 6px 0 var(--btn-shadow);
+            transition: all 0.15s ease;
+            text-align: left;
+            position: relative;
+            outline: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 var(--btn-shadow);
+            background: #FFFFFF;
+        }
+
+        .option-btn:active:not(:disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 var(--btn-shadow);
+        }
+
+        .option-btn.correct {
+            background: var(--correct-color) !important;
+            color: white !important;
+            border-color: #00B159 !important;
+            box-shadow: 0 6px 0 var(--correct-shadow) !important;
+        }
+
+        .option-btn.wrong {
+            background: var(--wrong-color) !important;
+            color: white !important;
+            border-color: #E03B4B !important;
+            box-shadow: 0 6px 0 var(--wrong-shadow) !important;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        /* Explanation Box - STRICT 4-STEP STRUCTURE */
+        .explanation-box {
+            margin-top: 20px;
+            background: #F8F9FA;
+            border-left: 6px solid #8854C0;
+            border-radius: 12px;
+            padding: 18px;
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exp-title {
+            font-weight: 900;
+            color: #8854C0;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .exp-step {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #2D3436;
+        }
+
+        .exp-step-title {
+            font-weight: 800;
+            color: #0984E3;
+        }
+
+        /* Bottom Submit Area */
+        .submit-section {
+            text-align: center;
+            margin: 40px 0 20px 0;
+        }
+
+        .submit-btn {
+            background: #00C9A7;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 900;
+            padding: 16px 48px;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 8px 0 #00967D;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 11px 0 #00967D;
+        }
+
+        .submit-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 0 #00967D;
+        }
+
+        /* Result Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 24px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.6); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .score-badge {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #FDCB6E;
+            color: #D63031;
+            font-size: 2.2rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+            box-shadow: 0 8px 0 #E1B12C;
+        }
+
+        .modal-feedback {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #2D3436;
+            margin: 15px 0 25px 0;
+            line-height: 1.5;
+        }
+
+        .close-modal-btn {
+            background: #8854C0;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #6C38A1;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-patterns"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="main-wrapper">
+        <header>
+            <div class="teacher-tag">Giáo viên tạo: Ms Lê Hằng English</div>
+        </header>
+
+        <div class="notice-banner">
+            <div class="notice-title">⚠️ LỜI NHẮC CỰC KỲ QUAN TRỌNG ⚠️</div>
+            <div class="notice-body">
+                Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.
+                Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+                <span class="notice-highlight">* Kéo tới đâu, làm tới đó! *</span>
+            </div>
+        </div>
+
+        <!-- Dynamic Questions Container -->
+        <div id="quiz-container"></div>
+
+        <div class="submit-section">
+            <button class="submit-btn" onclick="submitQuiz()">NỘP BÀI THI 🚀</button>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal-overlay" id="result-modal">
+        <div class="modal-content">
+            <div class="score-badge" id="modal-score">0/15</div>
+            <h2 style="color: #8854C0; font-weight: 900;" id="modal-title">KẾT QUẢ BÀI THI</h2>
+            <div class="modal-feedback" id="modal-msg"></div>
+            <button class="close-modal-btn" onclick="closeModal()">Đóng & Xem Lại Bài</button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            // --- SECTION 1: ADVERTISEMENT CLOZE (QUESTIONS 1 TO 6) ---
+            {
+                qNumLabel: "Question 1",
+                section: "Part 1: Advertisement Cloze",
+                passage: "Always wanted to SING?<br>ALL WELCOME, NO AUDITIONS<br>Southend Vox is looking to (1)________ new members (2)________ love to sing. With mixed ability and experience, we aim (3)________ our community and as such regularly raise funds for organizations and participate (4)________ events. So, (5)________ you sing in the shower, you are (6)________ King and Queen of Karaoke or a keen amateur.<br>COME AND JOIN US<br>We meet every Wednesday 7.30pm- 9.30pm at St Laurence Church Hall, Eastwoodbury Lane, Southend-on-Sea, Essex SS2 6UH.",
+                question: "Question 1. Choose the best option for blank (1):",
+                options: ["A. recruit", "B. recruitment", "C. recruital", "D. recruiter"],
+                correct: 0,
+                explanation: {
+                    step1: "Dịch câu: Southend Vox đang muốn tuyển dụng những thành viên mới...",
+                    step2: "• A. recruit (v): tuyển dụng / chiêu mộ<br>• B. recruitment (n): sự tuyển dụng<br>• C. recruital (n): từ viết sai<br>• D. recruiter (n): nhà tuyển dụng (người)",
+                    step3: "Cấu trúc động từ: 'look to + V-bare' (hướng tới / muốn làm việc gì). Đứng sau 'looking to' cần một động từ nguyên thể 'recruit'.",
+                    step4: "Loại B và D vì là danh từ; loại C vì từ viết sai chính tả."
+                }
+            },
+            {
+                qNumLabel: "Question 2",
+                section: "Part 1: Advertisement Cloze",
+                question: "Question 2. Choose the best option for blank (2):",
+                options: ["A. which", "B. who", "C. that", "D. whose"],
+                correct: 1,
+                explanation: {
+                    step1: "Dịch câu: Southend Vox đang tuyển các thành viên mới, những người mà yêu thích ca hát.",
+                    step2: "• A. which: thay thế cho vật<br>• B. who: thay thế cho người (làm chủ ngữ)<br>• C. that: thay thế cho người/vật (tuy nhiên B phù hợp chuẩn nhất cho người)<br>• D. whose: chỉ sở hữu",
+                    step3: "Đại từ quan hệ đứng sau danh từ chỉ người 'new members' làm chủ ngữ cho động từ 'love' phía sau là 'who'.",
+                    step4: "Loại A (cho vật), D (sở hữu); C không tự nhiên bằng B khi thay cho người ở ngữ cảnh này."
+                }
+            },
+            {
+                qNumLabel: "Question 3",
+                section: "Part 1: Advertisement Cloze",
+                question: "Question 3. Choose the best option for blank (3):",
+                options: ["A. impact", "B. impacted", "C. impacting", "D. to impact"],
+                correct: 3,
+                explanation: {
+                    step1: "Dịch câu: Với năng lực và kinh nghiệm đa dạng, chúng tôi hướng tới việc tác động tích cực đến cộng đồng...",
+                    step2: "• A. impact (v-bare)<br>• B. impacted (v-ed)<br>• C. impacting (v-ing)<br>• D. to impact (to-V)",
+                    step3: "Cấu trúc ngữ pháp: 'aim + to-V' (mục tiêu / hướng tới làm việc gì) -> 'aim to impact'.",
+                    step4: "Loại A, B, C vì sai dạng chia động từ đứng sau 'aim'."
+                }
+            },
+            {
+                qNumLabel: "Question 4",
+                section: "Part 1: Advertisement Cloze",
+                question: "Question 4. Choose the best option for blank (4):",
+                options: ["A. on", "B. for", "C. at", "D. in"],
+                correct: 3,
+                explanation: {
+                    step1: "Dịch câu: ...thường xuyên gây quỹ cho các tổ chức và tham gia vào các sự kiện.",
+                    step2: "• A. on<br>• B. for<br>• C. at<br>• D. in",
+                    step3: "Cụm động từ cố định: 'participate in something' (tham gia vào cái gì/sự kiện gì).",
+                    step4: "Loại A, B, C vì On, For, At không đi kèm với động từ 'participate'."
+                }
+            },
+            {
+                qNumLabel: "Question 5",
+                section: "Part 1: Advertisement Cloze",
+                question: "Question 5. Choose the best option for blank (5):",
+                options: ["A. unless", "B. when", "C. if", "D. because"],
+                correct: 2,
+                explanation: {
+                    step1: "Dịch câu: Vì vậy, nếu bạn hát trong phòng tắm, bạn là Vua/Hoàng hậu Karaoke hay một người đam mê...",
+                    step2: "• A. unless: trừ khi<br>• B. when: khi nào<br>• C. if: nếu (câu điều kiện)<br>• D. because: bởi vì",
+                    step3: "Liên từ giả định điều kiện 'So, if you sing in the shower,...' (Vì vậy, nếu bạn thường hát trong phòng tắm...).",
+                    step4: "Loại A (trừ khi), B (khi), D (bởi vì) không diễn tả giả định vui tươi của đoạn quảng cáo."
+                }
+            },
+            {
+                qNumLabel: "Question 6",
+                section: "Part 1: Advertisement Cloze",
+                question: "Question 6. Choose the best option for blank (6):",
+                options: ["A. a", "B. an", "C. the", "D. ø"],
+                correct: 0,
+                explanation: {
+                    step1: "Dịch câu: ...bạn là một Vua/Hoàng hậu Karaoke hay một người đam mê nghiệp dư.",
+                    step2: "• A. a: mạo từ đứng trước phụ âm<br>• B. an: mạo từ đứng trước nguyên âm<br>• C. the: mạo từ xác định<br>• D. ø: không dùng mạo từ",
+                    step3: "Đứng trước danh từ số ít chỉ danh xưng/vị trí lần đầu nhắc tới bắt đầu bằng phụ âm /k/ 'King and Queen' dùng mạo từ không xác định 'a'.",
+                    step4: "Loại B vì 'King' bắt đầu bằng phụ âm; C và D không dùng cho danh xưng chung chưa xác định."
+                }
+            },
+
+            // --- SECTION 2: ANNOUNCEMENT CLOZE (QUESTIONS 7 TO 12) ---
+            {
+                qNumLabel: "Question 7",
+                section: "Part 2: Announcement Cloze",
+                passage: "ANNOUNCEMENT OF DANCE EVENT<br>This week's dance (7)________. We are sorry to everyone that has been looking forward to it. It was supposed to be on Friday night, but we were notified that because of circumstances beyond their control, the band can't play that day. After the band's (8)________, we tried to get a DJ but it was too late. All of the local DJs were playing somewhere else. Don't worry - we are rescheduling for next Friday, June 20. This time we will have DJ Morry Morris. For those of you who have already bought tickets, you (9)________ use them to enter the dance on the rescheduled date. (10)________ you want a refund, you can bring your (11)________ to the student council office next week. Again, we are sorry (12)________ thank you for your understanding.",
+                question: "Question 7. Choose the best option for blank (7):",
+                options: ["A. has been cancelled", "B. has cancel", "C. canceled", "D. cancels"],
+                correct: 0,
+                explanation: {
+                    step1: "Dịch câu: Buổi khiêu vũ tuần này đã bị hủy bỏ. Chúng tôi xin lỗi tất cả những ai đã ngóng chờ sự kiện này.",
+                    step2: "• A. has been cancelled: đã bị hủy (Hiện tại hoàn thành bị động)<br>• B. has cancel: viết sai ngữ pháp<br>• C. canceled: quá khứ đơn<br>• D. cancels: hiện tại đơn",
+                    step3: "Sự việc bị hủy vừa xảy ra để lại hậu quả hiện tại (thông báo xin lỗi) -> Dùng thì Hiện tại hoàn thành dạng bị động: `has + been + V3/ed` ('has been cancelled').",
+                    step4: "Loại B viết sai ngữ pháp; C và D không nhấn mạnh kết quả sự việc vừa mới bị hủy ở hiện tại."
+                }
+            },
+            {
+                qNumLabel: "Question 8",
+                section: "Part 2: Announcement Cloze",
+                question: "Question 8. Choose the best option for blank (8):",
+                options: ["A. refusal", "B. disappearance", "C. cancellation", "D. illustrate"],
+                correct: 0,
+                explanation: {
+                    step1: "Dịch câu: Sau sự từ chối của ban nhạc, chúng tôi đã cố gắng mời một DJ nhưng đã quá muộn.",
+                    step2: "• A. refusal (n): sự từ chối<br>• B. disappearance (n): sự biến mất<br>• C. cancellation (n): sự hủy bỏ<br>• D. illustrate (v): minh họa",
+                    step3: "Đứng sau sở hữu cách 'the band's' cần một danh từ. Sự việc ban nhạc không thể biểu diễn ('can't play that day') là sự từ chối biểu diễn ('the band's refusal').",
+                    step4: "Loại B (biến mất), C (sự hủy bỏ - sự kiện bị hủy chứ ban nhạc từ chối), D (động từ minh họa)."
+                }
+            },
+            {
+                qNumLabel: "Question 9",
+                section: "Part 2: Announcement Cloze",
+                question: "Question 9. Choose the best option for blank (9):",
+                options: ["A. must", "B. should", "C. may", "D. needn’t"],
+                correct: 2,
+                explanation: {
+                    step1: "Dịch câu: Đối với những ai đã mua vé, bạn có thể sử dụng chúng để vào cửa buổi khiêu vũ vào ngày đã đổi lịch.",
+                    step2: "• A. must: bắt buộc<br>• B. should: nên<br>• C. may: có thể (chỉ sự cho phép / quyền lợi)<br>• D. needn’t: không cần",
+                    step3: "Động từ khuyết thiếu 'may' diễn tả quyền lợi/sự cho phép dùng lại vé cũ ('you may use them').",
+                    step4: "Loại A (bắt buộc), B (nên) và D (không cần) không diễn tả đúng sự cho phép sử dụng lại vé."
+                }
+            },
+            {
+                qNumLabel: "Question 10",
+                section: "Part 2: Announcement Cloze",
+                question: "Question 10. Choose the best option for blank (10):",
+                options: ["A. Should", "B. Had", "C. Were", "D. Do"],
+                correct: 0,
+                explanation: {
+                    step1: "Dịch câu: Nếu bạn muốn hoàn tiền, bạn có thể mang vé đến văn phòng hội học sinh vào tuần tới.",
+                    step2: "• A. Should (Đảo ngữ câu điều kiện loại 1)<br>• B. Had (Đảo ngữ loại 3)<br>• C. Were (Đảo ngữ loại 2)<br>• D. Do (Trợ động từ không dùng đảo điều kiện)",
+                    step3: "Đảo ngữ câu điều kiện loại 1: `Should + S + V-bare, S + will/can + V` -> 'Should you want a refund,...' (= If you want a refund...).",
+                    step4: "Loại B (dùng loại 3), C (dùng loại 2), D (không dùng đảo ngữ điều kiện)."
+                }
+            },
+            {
+                qNumLabel: "Question 11",
+                section: "Part 2: Announcement Cloze",
+                question: "Question 11. Choose the best option for blank (11):",
+                options: ["A. dance", "B. band", "C. programme", "D. ticket"],
+                correct: 3,
+                explanation: {
+                    step1: "Dịch câu: Nếu bạn muốn hoàn tiền, bạn có thể mang vé của mình đến văn phòng hội học sinh...",
+                    step2: "• A. dance: buổi khiêu vũ<br>• B. band: ban nhạc<br>• C. programme: chương trình<br>• D. ticket: vé xem",
+                    step3: "Muốn hoàn tiền ('refund') thì đối tượng vật lý cần mang đến là chiếc vé ('bring your ticket').",
+                    step4: "Loại A, B, C vì không thể mang cả buổi khiêu vũ hay ban nhạc đến văn phòng hoàn tiền."
+                }
+            },
+            {
+                qNumLabel: "Question 12",
+                section: "Part 2: Announcement Cloze",
+                question: "Question 12. Choose the best option for blank (12):",
+                options: ["A. but", "B. and", "C. or", "D. to"],
+                correct: 1,
+                explanation: {
+                    step1: "Dịch câu: Một lần nữa, chúng tôi xin lỗi và cảm ơn sự cảm thông của các bạn.",
+                    step2: "• A. but: nhưng<br>• B. and: và (nối 2 vế song song 'sorry AND thank you')<br>• C. or: hoặc<br>• D. to: để",
+                    step3: "Liên từ 'and' nối hai hành động/thái độ song song của ban tổ chức ('we are sorry and thank you').",
+                    step4: "Loại A, C, D không dùng nối cặp thành ngữ xã giao 'sorry and thank you'."
+                }
+            },
+
+            // --- SECTION 3: REORDERING (QUESTIONS 13 TO 15) ---
+            {
+                qNumLabel: "Question 13",
+                section: "Part 3: Reordering Exchange & Text",
+                question: "Question 13. Mark the letter A, B, C, or D to indicate the correct arrangement of the sentences to make a meaningful exchange:\na. Nam: That’s a good idea.\nb. Nam: Do you have any suggestions for the theme of our music festival?\nc. Peter: How about Gen Z Music?",
+                options: [
+                    "A. b - a - c",
+                    "B. b - c - a",
+                    "C. c - b - a",
+                    "D. a - c - b"
+                ],
+                correct: 1,
+                explanation: {
+                    step1: "Dịch hội thoại:<br>b. Nam: Cậu có gợi ý nào cho chủ đề của lễ hội âm nhạc chúng mình không?<br>c. Peter: Thế còn Âm nhạc Gen Z thì sao?<br>a. Nam: Đó là một ý hay đấy.",
+                    step2: "Phân tích trật tự giao tiếp:<br>• 1. 'b' - Nam mở đầu bằng câu hỏi xin gợi ý: 'Do you have any suggestions...?'<br>• 2. 'c' - Peter đưa ra lời gợi ý: 'How about Gen Z Music?'<br>• 3. 'a' - Nam tán thành khen gợi ý hay: 'That’s a good idea.'",
+                    step3: "Trật tự hội thoại cực kỳ tự nhiên và chuẩn xác: b - c - a -> Chọn đáp án B.",
+                    step4: "Loại A, C, D vì xếp câu tán thành 'a' lên trước khi Peter đưa ra lời gợi ý."
+                }
+            },
+            {
+                qNumLabel: "Question 14",
+                section: "Part 3: Reordering Exchange & Text",
+                question: "Question 14. Mark the letter A, B, C, or D to indicate the correct arrangement of the sentences to make a meaningful paragraph:\na. It was one of the most wonderful concerts that my friends and I have ever attended.\nb. They not only performed their big hits but also talked and played games with fans, which made the atmosphere friendly and wonderful.\nc. I had a chance to go to a music event under the MADE tour in Seoul by my Korean idol BIGBANG.\nd. This tour in Seoul was their last one so it was the most impressive and amazing concert ever.",
+                options: [
+                    "A. c - a - d - b",
+                    "B. d - c - a - b",
+                    "C. c - b - a - d",
+                    "D. b - d - a - c"
+                ],
+                correct: 2,
+                explanation: {
+                    step1: "Dịch đoạn văn:<br>c. Tớ đã có cơ hội đến dự sự kiện âm nhạc trong chuyến lưu diễn MADE tại Seoul của thần tượng Hàn Quốc BIGBANG.<br>b. Họ không chỉ biểu diễn các bản bản hit lớn mà còn trò chuyện và chơi trò chơi với người hâm mộ...<br>a. Đó là một trong những buổi hòa nhạc tuyệt vời nhất mà tớ và bạn tớ từng tham dự.<br>d. Chuyến lưu diễn này ở Seoul là chuyến lưu diễn cuối cùng của họ nên đây là buổi hòa nhạc ấn tượng nhất từ trước đến nay.",
+                    step2: "Phân tích mạch lập luận đoạn văn:<br>• 1. 'c' - Câu mở đầu giới thiệu sự kiện đến dự: 'I had a chance to go...'<br>• 2. 'b' - Miêu tả chi tiết các hoạt động trong buổi diễn: 'They not only performed...'<br>• 3. 'a' - Đánh giá cảm xúc về buổi diễn: 'It was one of the most wonderful concerts...'<br>• 4. 'd' - Kết luận nhấn mạnh tầm quan trọng chuyến đi: 'This tour in Seoul was their last one...'",
+                    step3: "Trật tự đoạn văn cực kỳ chặt chẽ: c - b - a - d -> Chọn đáp án C.",
+                    step4: "Loại A, B, D vì đảo các câu miêu tả hay kết luận lên trước câu giới thiệu sự kiện 'c'."
+                }
+            },
+            {
+                qNumLabel: "Question 15",
+                section: "Part 3: Reordering Exchange & Text",
+                question: "Question 15. Mark the letter A, B, C, or D to indicate the correct arrangement of the sentences to make a meaningful exchange:\na. Mai: Wow, so many famous artists are going to perform there. This band looks so cool. Let’s go to the Saturday show.\nb. Ann: Yes, I’d love to. How about going to a music show? Let me check the weekend programme at the 4 Modern Arts Centre. Look at their website!\nc. Ann: Do you have any plans for this Saturday evening?\nd. Ann: Sounds great!\ne. Mai: No, I don’t. Shall we do something together?",
+                options: [
+                    "A. c - e - a - d - b",
+                    "B. d - c - a - e - b",
+                    "C. c - e - b - a - d",
+                    "D. b - d - a - e - c"
+                ],
+                correct: 2,
+                explanation: {
+                    step1: "Dịch hội thoại:<br>c. Ann: Tối Thứ Bảy này cậu có kế hoạch gì chưa?<br>e. Mai: Chưa, tớ không có. Chúng mình cùng làm gì đó đi?<br>b. Ann: Ừ, tớ rất muốn. Hay là đi xem show âm nhạc đi? Để tớ kiểm tra chương trình...<br>a. Mai: Ôi, nhiều nghệ sĩ nổi tiếng quá. Ban nhạc này ngầu thật. Chúng mình đi show Thứ Bảy nhé.<br>d. Ann: Nghe tuyệt đấy!",
+                    step2: "Phân tích trật tự giao tiếp:<br>• 1. 'c' - Ann hỏi kế hoạch: 'Do you have any plans...?'<br>• 2. 'e' - Mai trả lời và gợi ý: 'No, I don't. Shall we...?'<br>• 3. 'b' - Ann đồng ý và gợi ý đi xem show: 'Yes, I'd love to. How about...'<br>• 4. 'a' - Mai xem trang web và rủ đi show Thứ 7: 'Wow... Let's go to the Saturday show.'<br>• 5. 'd' - Ann chốt đồng ý: 'Sounds great!'",
+                    step3: "Trật tự cuộc trò chuyện logic hoàn chỉnh: c - e - b - a - d -> Chọn đáp án C.",
+                    step4: "Loại A, B, D vì đảo câu chốt đồng ý 'd' hoặc câu rủ 'b' lên sai vị trí."
+                }
+            }
+        ];
+
+        // Global State variables
+        let userAnswers = new Array(quizData.length).fill(null);
+
+        // Web Audio API Sound Generators
+        function playCorrectSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.25); // A5
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } catch(e){}
+        }
+
+        function playWrongSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, ctx.currentTime); // A3
+                osc.frequency.linearRampToValueAtTime(130, ctx.currentTime + 0.3); // C3
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } catch(e){}
+        }
+
+        // Pure JS Confetti Effect
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            if(!canvas) return;
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            const colors = ['#00D26A', '#FF4757', '#FDCB6E', '#8854C0', '#00C9A7', '#E84393'];
+            
+            for(let i=0; i<90; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: Math.random() * 4 + 3,
+                    rot: Math.random() * 360,
+                    rotSpeed: (Math.random() - 0.5) * 8
+                });
+            }
+
+            let frame = 0;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.rot += p.rotSpeed;
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rot * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                    ctx.restore();
+                });
+                frame++;
+                if(frame < 100) {
+                    requestAnimationFrame(animate);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            animate();
+        }
+
+        // Shuffle Options Algorithm
+        function shuffleOptions(array) {
+            let arr = array.map((opt, idx) => ({ text: opt, originalIndex: idx }));
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Render Questions
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((q, qIdx) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-card-${qIdx}`;
+
+                let passageHTML = '';
+                if(q.passage) {
+                    passageHTML = `<div class="passage-box">${q.passage}</div>`;
+                }
+
+                const shuffled = shuffleOptions(q.options);
+                q.shuffledOptions = shuffled;
+
+                let optionsHTML = '';
+                shuffled.forEach((opt, optIdx) => {
+                    optionsHTML += `
+                        <button class="option-btn" 
+                                id="opt-${qIdx}-${optIdx}" 
+                                onclick="selectOption(${qIdx}, ${optIdx}, ${opt.originalIndex})">
+                            ${opt.text}
+                        </button>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div>
+                        <span class="section-tag">${q.section}</span>
+                        <span class="question-number">${q.qNumLabel} (${qIdx + 1}/${quizData.length})</span>
+                    </div>
+                    ${passageHTML}
+                    <div class="question-text">${q.question}</div>
+                    <div class="options-grid" id="opts-grid-${qIdx}">
+                        ${optionsHTML}
+                    </div>
+                    <div class="explanation-box" id="exp-${qIdx}">
+                        <div class="exp-title">💡 GIẢI THÍCH CHI TIẾT TỪ MS LÊ HẰNG:</div>
+                        <div class="exp-step"><span class="exp-step-title">Bước 1 (Dịch câu):</span> ${q.explanation.step1}</div>
+                        <div class="exp-step"><span class="exp-step-title">Bước 2 (Từ vựng/Đáp án):</span><br>${q.explanation.step2}</div>
+                        <div class="exp-step"><span class="exp-step-title">Bước 3 (Tại sao ĐÚNG):</span> ${q.explanation.step3}</div>
+                        <div class="exp-step"><span class="exp-step-title">Bước 4 (Tại sao SAI):</span> ${q.explanation.step4}</div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Handle Answer Selection
+        function selectOption(qIdx, shuffledIdx, originalIdx) {
+            if(userAnswers[qIdx] !== null) return;
+
+            const q = quizData[qIdx];
+            userAnswers[qIdx] = (originalIdx === q.correct);
+
+            const grid = document.getElementById(`opts-grid-${qIdx}`);
+            const buttons = grid.querySelectorAll('.option-btn');
+            
+            buttons.forEach(btn => btn.disabled = true);
+
+            const selectedBtn = document.getElementById(`opt-${qIdx}-${shuffledIdx}`);
+
+            if(originalIdx === q.correct) {
+                selectedBtn.classList.add('correct');
+                playCorrectSound();
+                triggerConfetti();
+            } else {
+                selectedBtn.classList.add('wrong');
+                playWrongSound();
+                
+                q.shuffledOptions.forEach((opt, idx) => {
+                    if(opt.originalIndex === q.correct) {
+                        document.getElementById(`opt-${qIdx}-${idx}`).classList.add('correct');
+                    }
+                });
+            }
+
+            const expBox = document.getElementById(`exp-${qIdx}`);
+            expBox.style.display = 'block';
+        }
+
+        // Submit Quiz & Show Result Modal
+        function submitQuiz() {
+            let correctCount = 0;
+            userAnswers.forEach(ans => {
+                if(ans === true) correctCount++;
+            });
+
+            const total = quizData.length;
+            const percentage = Math.round((correctCount / total) * 100);
+
+            document.getElementById('modal-score').innerText = `${correctCount}/${total}`;
+
+            let feedback = '';
+            if(percentage < 50) {
+                feedback = '“Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!”';
+            } else if(percentage <= 80) {
+                feedback = '“Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!”';
+            } else {
+                feedback = '“Làm tốt lắm, con cố gắng rinh điểm 10 ở lần sau nha!”';
+                triggerConfetti();
+            }
+
+            document.getElementById('modal-msg').innerText = feedback;
+            document.getElementById('result-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('result-modal').style.display = 'none';
+        }
+
+        // Initialize Quiz on load
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
